@@ -40,6 +40,10 @@
   /* ---------- Password gate ---------- */
   #gate{position:fixed;inset:0;z-index:100;background:var(--cream);display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden}
   #gate.hidden{display:none}
+  /* While locked, render nothing but the gate so the page can't be scrolled into view (iOS ignores body overflow:hidden) */
+  html.locked body > :not(#gate){display:none !important}
+  html.locked,html.locked body{overflow:hidden;height:100%;overscroll-behavior:none}
+  html.locked #gate{display:flex}
   .gate-card{position:relative;z-index:3;text-align:center;max-width:420px;width:100%}
   .gate-card .script{font-size:58px;margin:6px 0 2px}
   .gate-card .display{font-size:30px;letter-spacing:.18em;text-transform:uppercase}
@@ -264,6 +268,7 @@
     .hero{padding:120px 0 190px}
   }
 </style>
+<script>(function(){var d=document.documentElement;try{if(sessionStorage.getItem('jk-ok')!=='1')d.classList.add('locked')}catch(e){d.classList.add('locked')}})();</script>
 </head>
 <body>
 
@@ -659,8 +664,8 @@
    it is not bank-grade security, and the page is set to noindex. */
 const PASSWORD = 'tropicallove';
 const gate = document.getElementById('gate');
-function unlock(){ gate.classList.add('hidden'); document.body.style.overflow=''; }
-function lock(){ gate.classList.remove('hidden'); document.body.style.overflow='hidden'; }
+function unlock(){ document.documentElement.classList.remove('locked'); gate.classList.add('hidden'); document.body.style.overflow=''; window.scrollTo(0,0); }
+function lock(){ document.documentElement.classList.add('locked'); gate.classList.remove('hidden'); document.body.style.overflow='hidden'; }
 let ok = false;
 try { ok = sessionStorage.getItem('jk-ok') === '1'; } catch(e){}
 if (!ok) lock();
