@@ -579,8 +579,7 @@
     <div class="section-head reveal"><span class="script">kindly</span><h2>RSVP</h2></div>
     <p class="rsvp-intro reveal">Please reply by <span class="tbd">Date coming soon</span>.</p>
 
-    <form class="rsvp-form reveal" name="rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="rsvpForm">
-      <input type="hidden" name="form-name" value="rsvp">
+    <form class="rsvp-form reveal" name="rsvp" id="rsvpForm">
       <p class="hidden-field"><label>Leave blank <input name="bot-field"></label></p>
 
       <div class="row">
@@ -719,13 +718,30 @@ function syncGuests(){
 form.querySelectorAll('input[name=attending]').forEach(r => r.addEventListener('change', syncGuests));
 countSel.addEventListener('change', syncGuests);
 syncGuests();
+/* RSVP -> Google Form (owned by thebeachgerritys@gmail.com; responses land in the "Kevin & Jackie RSVPs" sheet) */
+const GFORM = 'https://docs.google.com/forms/d/e/1FAIpQLSc4-bRndBgn81KlMr8XWs-8sJO5JGz5lv40cfaKT-yn4nJa5w/formResponse';
+const GF = { name:'entry.1123076959', email:'entry.186786157', attending:'entry.789260265', guests:'entry.45635280',
+             welcome:'entry.351362354', party:'entry.1092051243', dietary:'entry.1324656092', message:'entry.989314418' };
 form.addEventListener('submit', async e => {
   e.preventDefault();
   const msg = document.getElementById('formMsg');
+  const d = new FormData(form);
+  if (d.get('bot-field')) return;               // spam honeypot
+  const declining = (d.get('attending')||'').startsWith('Regret');
+  const n = declining ? 0 : +(d.get('guests')||1);
+  const party = [];
+  for (let i = 1; i <= n; i++) {
+    const who = i === 1 ? d.get('name') : (d.get('guest_'+i+'_name') || 'Guest '+i);
+    party.push(who + ' – ' + (d.get('guest_'+i+'_dinner') || 'no dinner choice'));
+  }
+  const body = new URLSearchParams({
+    [GF.name]: d.get('name')||'', [GF.email]: d.get('email')||'', [GF.attending]: d.get('attending')||'',
+    [GF.guests]: declining ? '0' : String(n), [GF.welcome]: declining ? '' : (d.get('welcome_cocktails')||''),
+    [GF.party]: party.join('; '), [GF.dietary]: declining ? '' : (d.get('dietary')||''), [GF.message]: d.get('message')||''
+  });
   msg.textContent = 'Sending…';
   try {
-    const res = await fetch('/', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body:new URLSearchParams(new FormData(form)).toString() });
-    if (!res.ok) throw new Error();
+    await fetch(GFORM, { method:'POST', mode:'no-cors', body });
     form.style.display = 'none';
     document.getElementById('thanks').style.display = 'block';
   } catch(err) {
