@@ -7,13 +7,13 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Italiana&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Italiana&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
 <style>
   :root{
     --cream:#F6F2EA; --cream-2:#EFE9DD; --paper:#FBF9F4;
     --green:#26321F; --green-2:#3E4B34; --sage:#8E9C7E; --sage-soft:#C9D0BC;
     --mauve:#9A6470; --mauve-soft:#E7D3D4;
-    --ink:#2B2A26; --muted:#6E6B62; --line:rgba(38,50,31,.18);
+    --ink:#24231F; --muted:#4F4C44; --line:rgba(38,50,31,.18);
     --serif:'Cormorant Garamond', Georgia, serif;
     --display:'Italiana', 'Cormorant Garamond', serif;
     --sans:'Jost', system-ui, sans-serif;
@@ -23,7 +23,7 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;overflow-x:clip}
   section,header,.route{overflow-x:clip}
-  body{background:var(--cream);color:var(--ink);font-family:var(--serif);font-size:19px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body{background:var(--cream);color:var(--ink);font-family:var(--serif);font-size:19px;font-weight:500;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit}
   img{max-width:100%;display:block}
   .eyebrow{font-family:var(--sans);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--green-2)}
@@ -267,6 +267,11 @@
     .event{padding:36px 22px}
     .hero{padding:120px 0 190px}
   }
+
+  /* ---------- Readability: firmer strokes on the thin display face at small sizes ---------- */
+  .card h4,.pet h4,summary,.person h3,.monogram,footer .names{-webkit-text-stroke:.45px currentColor}
+  .event h3,.hotel-body h3,.section-head h2,.hero .names,.hero .date{-webkit-text-stroke:.35px currentColor}
+  .eyebrow,.tbd{font-weight:500}
 </style>
 <script>(function(){var d=document.documentElement;try{if(sessionStorage.getItem('jk-ok')!=='1')d.classList.add('locked')}catch(e){d.classList.add('locked')}})();</script>
 </head>
