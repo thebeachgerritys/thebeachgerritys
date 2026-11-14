@@ -272,6 +272,30 @@
   .card h4,.pet h4,summary,.person h3,.monogram,footer .names{-webkit-text-stroke:.45px currentColor}
   .event h3,.hotel-body h3,.section-head h2,.hero .names,.hero .date{-webkit-text-stroke:.35px currentColor}
   .eyebrow,.tbd{font-weight:500}
+  .card h4{-webkit-text-stroke:.55px currentColor}
+  .card .meta,.hotel-body dt{font-weight:500;font-size:11.5px}
+  .card p,.explore-intro{color:#3F3D37}
+  .card p{font-size:18px}
+
+  /* ---------- Registry ---------- */
+  .registry{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .gift-note{max-width:640px;margin:-20px auto 44px;text-align:center;font-size:20px;color:var(--ink)}
+  .gift-note p+p{margin-top:14px}
+  .gift-note .sign{font-family:var(--script);color:var(--mauve);font-size:34px;margin-top:18px;line-height:1.2}
+  .gifts{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:760px;margin:0 auto}
+  .gift{background:var(--cream);border:1px solid var(--line);padding:32px 28px;text-align:center}
+  .gift h4{font-family:var(--display);font-weight:400;font-size:24px;letter-spacing:.12em;text-transform:uppercase;color:var(--green);-webkit-text-stroke:.55px currentColor}
+  .gift .meta{font-family:var(--sans);font-weight:500;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mauve);margin:4px 0 14px}
+  .gift p{font-size:17.5px;color:#3F3D37}
+  .gift .handle{font-family:var(--sans);font-weight:500;font-size:17px;letter-spacing:.06em;color:var(--green);margin:12px 0 0}
+  .gift .btn{margin-top:18px;cursor:pointer;background:transparent;color:var(--green)}
+  .gift .btn.solid{color:var(--cream);background:var(--green)}
+  .gift .btn.solid:hover{background:var(--mauve);border-color:var(--mauve)}
+  .stores{max-width:760px;margin:40px auto 0;text-align:center}
+  .stores h4{font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--green-2);margin-bottom:14px}
+  .stores .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .stores .store{border:1px dashed var(--line);padding:14px 22px;font-size:17px;color:var(--muted);min-width:220px}
+  @media (max-width:860px){.gifts{grid-template-columns:1fr}.gift-note{font-size:18.5px}}
 </style>
 <script>(function(){var d=document.documentElement;try{if(sessionStorage.getItem('jk-ok')!=='1')d.classList.add('locked')}catch(e){d.classList.add('locked')}})();</script>
 </head>
@@ -307,6 +331,7 @@
       <li><a href="#stay">Stay</a></li>
       <li><a href="#explore">New Haven</a></li>
       <li><a href="#party">Wedding Party</a></li>
+      <li><a href="#registry">Registry</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#rsvp" class="rsvp-link">RSVP</a></li>
     </ul>
@@ -561,6 +586,42 @@
   </div>
 </section>
 
+<!-- ================= REGISTRY ================= -->
+<section class="registry" id="registry">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="script">with gratitude</span><h2>Registry</h2></div>
+    <div class="gift-note reveal">
+      <p>Your presence at our wedding is the greatest gift we could ask for! We're fortunate to have everything we need for our home, so for those who wish to give a gift, we've created a honeymoon and future adventures fund.</p>
+      <p>Contributions can be made electronically through Venmo or Zelle, both of which offer fee-free options, so your entire gift goes directly toward our next chapter together.</p>
+      <p>Thank you for being part of our celebration!</p>
+      <div class="sign">With love, Jackie &amp; Kevin</div>
+    </div>
+    <div class="gifts">
+      <div class="gift reveal">
+        <h4>Venmo</h4>
+        <div class="meta">Honeymoon &amp; adventures fund</div>
+        <p>Opens Venmo straight to our profile.</p>
+        <div class="handle">@kevingerrityjr</div>
+        <a class="btn solid" href="https://venmo.com/u/kevingerrityjr" target="_blank" rel="noopener">Give with Venmo</a>
+      </div>
+      <div class="gift reveal">
+        <h4>Zelle</h4>
+        <div class="meta">Honeymoon &amp; adventures fund</div>
+        <p>Open your bank's app, choose Zelle, and send to this number. It will show as Kevin.</p>
+        <div class="handle">860-803-7394</div>
+        <button type="button" class="btn" id="copyZelle" data-copy="8608037394">Copy number</button>
+      </div>
+    </div>
+    <div class="stores reveal">
+      <h4>Store registries</h4>
+      <div class="row">
+        <div class="store"><span class="tbd">Coming soon</span></div>
+        <div class="store"><span class="tbd">Coming soon</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= FAQ ================= -->
 <section id="faq">
   <div class="wrap">
@@ -571,7 +632,7 @@
       <details><summary>Can I bring a guest?</summary><p>Please check your invitation. It will note whether a plus-one is included.</p></details>
       <details><summary>Are kids welcome?</summary><p>Our wedding is adults only, with one important exception: Kevin's six nephews have a critical role to play and will be there in full force.</p></details>
       <details><summary>Is there transportation from the hotel?</summary><p>Yes. Shuttles will run to and from the wedding for guests staying at The Blake. We'll post times here once they're set.</p></details>
-      <details><summary>Where are you registered?</summary><p>Registry links are coming soon, including a couple of stores and a cash fund.</p></details>
+      <details><summary>Where are you registered?</summary><p>We've set up a honeymoon and future adventures fund through Venmo and Zelle. You'll find the details in our <a href="#registry">Registry</a> section. Store registries are coming soon.</p></details>
       <details><summary>What if it snows?</summary><p>We'll post any weather updates right here, so check back the week of the wedding.</p></details>
     </div>
   </div>
@@ -687,6 +748,14 @@ function tryPw(e){
 document.getElementById('gateBtn').addEventListener('click', tryPw);
 document.getElementById('gateForm').addEventListener('submit', tryPw);
 document.getElementById('gatePw').addEventListener('keydown', e => { if (e.key === 'Enter') tryPw(e); });
+
+/* ---------- Registry: copy Zelle number ---------- */
+document.getElementById('copyZelle')?.addEventListener('click', async e => {
+  const b = e.currentTarget, v = b.dataset.copy;
+  try { await navigator.clipboard.writeText(v); }
+  catch(err){ const t=document.createElement('textarea'); t.value=v; document.body.appendChild(t); t.select(); try{document.execCommand('copy')}catch(_){} t.remove(); }
+  b.textContent = 'Copied!'; setTimeout(()=>{ b.textContent = 'Copy number'; }, 2000);
+});
 
 /* ---------- Palm frond + palm tree art ---------- */
 
